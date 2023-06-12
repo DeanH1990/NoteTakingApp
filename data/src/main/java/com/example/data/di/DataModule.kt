@@ -1,7 +1,6 @@
-package com.example.notetakingapp.di
+package com.example.data.di
 
 import androidx.room.Room
-import com.example.data.dao.NoteDao
 import com.example.data.database.NoteDatabase
 import com.example.data.repository.NoteDataRepository
 import com.example.notetakingapp.repositories.NoteRepository
