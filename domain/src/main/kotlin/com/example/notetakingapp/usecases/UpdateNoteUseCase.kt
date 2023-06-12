@@ -4,7 +4,7 @@ import com.example.notetakingapp.models.Note
 import com.example.notetakingapp.repositories.NoteRepository
 
 class UpdateNoteUseCase(private val noteRepository: NoteRepository) {
-    fun execute(note: Note) {
+    suspend fun execute(note: Note) {
         noteRepository.updateNote(note)
     }
 }
