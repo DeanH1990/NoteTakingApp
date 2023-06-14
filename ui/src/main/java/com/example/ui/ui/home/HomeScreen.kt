@@ -1,7 +1,5 @@
 package com.example.ui.ui.home
 
-
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,7 +25,6 @@ fun HomeScreen(
     val allNotesVm = viewModel.notes.collectAsState().value
 
     HomeBody(noteList = allNotesVm)
-    Log.d("is it empty", allNotesVm.toString())
 }
 
 @Composable
