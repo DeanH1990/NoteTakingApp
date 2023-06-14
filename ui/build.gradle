@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
@@ -8,7 +8,6 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.ui"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -37,7 +36,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.2.0'
+        kotlinCompilerExtensionVersion '1.4.3'
     }
     packagingOptions {
         resources {
@@ -49,7 +48,6 @@ android {
 dependencies {
 
     implementation project(':domain')
-    implementation project(':data')
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
@@ -60,6 +58,7 @@ dependencies {
     implementation 'androidx.compose.material:material:1.4.3'
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

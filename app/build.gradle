@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.library'
+    id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
@@ -7,6 +7,11 @@ plugins {
 android {
     compileSdkVersion 33
     namespace 'com.example.notetakingapp'
+    defaultConfig {
+        applicationId "com.example.notetakingapp"
+        minSdkVersion 24
+        targetSdkVersion 33
+    }
 }
 
 dependencies {
