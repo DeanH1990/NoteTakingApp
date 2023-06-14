@@ -6,6 +6,10 @@ plugins {
 
 android {
     compileSdkVersion 33
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 33
+    }
 }
 
 dependencies {
@@ -14,7 +18,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
     implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
 }
