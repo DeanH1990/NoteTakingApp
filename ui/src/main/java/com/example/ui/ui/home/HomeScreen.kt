@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -15,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.notetakingapp.models.Note
 import com.example.ui.R
 import com.example.ui.ui.theme.NoteTakingAppTheme
+import com.example.ui.ui.utils.NoteTopAppBar
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -24,7 +26,20 @@ fun HomeScreen(
 ) {
     val allNotesVm = viewModel.notes.collectAsState().value
 
-    HomeBody(noteList = allNotesVm)
+    Scaffold(
+        topBar = {
+            NoteTopAppBar(
+                title = stringResource(HomeDestination.titleRes),
+                canNavigateBack = false
+            )
+        }
+    ) { innerPadding ->
+
+        HomeBody(
+            noteList = allNotesVm,
+            modifier = modifier.padding(innerPadding)
+        )
+    }
 }
 
 @Composable
@@ -41,7 +56,7 @@ private fun HomeBody(
         if (noteList.isEmpty()) {
             Text(
                 text = stringResource(R.string.empty_list),
-                style = MaterialTheme.typography.subtitle2
+                style = MaterialTheme.typography.subtitle1
             )
         }
     }
