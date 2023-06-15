@@ -6,9 +6,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
-
-import com.example.ui.ui.home.HomeDestination
-import com.example.ui.ui.home.HomeScreen
+import com.example.ui.ui.screens.home.HomeDestination
+import com.example.ui.ui.screens.home.HomeScreen
 
 
 @Composable
