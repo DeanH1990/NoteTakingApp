@@ -1,12 +1,9 @@
 package com.example.ui.ui.screens.home
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -21,6 +18,7 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun HomeScreen(
+    navigateToNoteEntry: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = getViewModel()
 ) {
@@ -32,6 +30,18 @@ fun HomeScreen(
                 title = stringResource(HomeDestination.titleRes),
                 canNavigateBack = false
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = navigateToNoteEntry ,
+                modifier = modifier.navigationBarsPadding()
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = stringResource(R.string.add_note_button),
+                    tint = MaterialTheme.colors.onPrimary
+                )
+            }
         }
     ) { innerPadding ->
 
@@ -66,6 +76,6 @@ private fun HomeBody(
 @Composable
 private fun PreviewHomeScreen() {
     NoteTakingAppTheme {
-        HomeScreen()
+        HomeScreen(navigateToNoteEntry = {})
     }
 }
