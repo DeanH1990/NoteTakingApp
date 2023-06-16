@@ -5,9 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.notetakingapp.usecases.GetAllNotesUseCase
 import com.example.ui.ui.extensions.toNoteUiState
 import com.example.ui.ui.model.NoteUiState
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.*
 
 class HomeViewModel(private val getAllNotesUseCase: GetAllNotesUseCase): ViewModel() {
 
@@ -19,9 +17,11 @@ class HomeViewModel(private val getAllNotesUseCase: GetAllNotesUseCase): ViewMod
     }
 
     private fun fetchNotes() {
-        viewModelScope.launch {
+            getAllNotesUseCase.execute().map { notes ->
+                notes.map { it.toNoteUiState() }
+            }.onEach { noteUiStates ->
+                _notes.value = noteUiStates
+            }.launchIn(viewModelScope)
 
-            _notes.value = getAllNotesUseCase.execute().map { it.toNoteUiState() }
-        }
     }
 }
