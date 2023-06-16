@@ -23,4 +23,7 @@ class NoteEntryViewModel(private val createNoteUseCase: CreateNoteUseCase): View
             createNoteUseCase.execute(noteUiState.toNote())
         }
     }
+    fun isNoteEmpty(): Boolean {
+        return noteUiState.title.isEmpty() || noteUiState.content.isEmpty()
+    }
 }

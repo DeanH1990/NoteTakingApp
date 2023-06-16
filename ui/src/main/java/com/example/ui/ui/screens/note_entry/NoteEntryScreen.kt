@@ -1,5 +1,7 @@
 package com.example.ui.ui.screens.note_entry
 
+import android.content.Context
+import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -10,13 +12,14 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.lifecycle.viewModelScope
 import com.example.ui.R
 import com.example.ui.ui.model.NoteUiState
 import com.example.ui.ui.utils.NoteTopAppBar
@@ -31,15 +34,18 @@ fun NoteEntryScreen(
     canNavigateBack: Boolean = true,
     viewModel: NoteEntryViewModel = getViewModel()
 ) {
-    val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     BackHandler(
         onBack = {
-            coroutineScope.launch {
-                viewModel.saveNote()
-                navigateBack()
-            }
-        })
+            handleNavigation(
+                context,
+                R.string.empty_note_discarded,
+                navigateBack,
+                viewModel
+            )
+        }
+    )
     
     Scaffold(
         topBar = {
@@ -47,10 +53,12 @@ fun NoteEntryScreen(
                 title = stringResource(NoteEntryDestination.titleRes),
                 canNavigateBack = canNavigateBack,
                 navigateUp = {
-                    coroutineScope.launch {
-                        viewModel.saveNote()
-                        onNavigateUp()
-                    }
+                    handleNavigation(
+                        context,
+                        R.string.empty_note_discarded,
+                        onNavigateUp,
+                        viewModel
+                    )
                 }
             )
         }
@@ -104,5 +112,23 @@ fun NoteInputForm(
                 focusedIndicatorColor = Color.Transparent
             )
         )
+    }
+}
+
+fun handleNavigation(
+    context: Context,
+    messageResId: Int,
+    navigate: () -> Unit,
+    viewModel: NoteEntryViewModel
+) {
+    viewModel.viewModelScope.launch {
+        if (viewModel.isNoteEmpty()) {
+            Toast.makeText(
+                context, context.getString(messageResId), Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            viewModel.saveNote()
+        }
+        navigate()
     }
 }
