@@ -1,6 +1,20 @@
 <resources>
+    <!--Screen titles -->
     <string name="app_name">Notes</string>
-    <string name="empty_list">Add a note!</string>
+    <string name="note_entry_title">Add Note</string>
+
+    <!--Inform user -->
+    <string name="empty_list">You have no saved notes!</string>
+
+    <!--Routes -->
     <string name="home_route">home</string>
+    <string name="note_entry_route">note_entry</string>
+
+    <!--Buttons -->
     <string name="back_button">back</string>
+    <string name="add_note_button">add note</string>
+
+    <!--Note input form -->
+    <string name="title_input_label">Title</string>
+    <string name="content_input_label">Note</string>
 </resources>
