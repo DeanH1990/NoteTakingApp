@@ -8,6 +8,7 @@ fun Note.toNoteUiState(): NoteUiState = NoteUiState(
     id = id,
     title = title,
     content = content,
+    truncatedContent = content.truncate()
 )
 
 fun NoteUiState.toNote(): Note = TextNote(
@@ -18,4 +19,7 @@ fun NoteUiState.toNote(): Note = TextNote(
 
 fun NoteUiState.isValid(): Boolean {
     return title.isNotBlank() && content.isNotBlank()
+}
+private fun String.truncate(maxLength: Int = 100): String {
+    return if (this.length > maxLength) this.substring(0, maxLength) + "..." else this
 }
