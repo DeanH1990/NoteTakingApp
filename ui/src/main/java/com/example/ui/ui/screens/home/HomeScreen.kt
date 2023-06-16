@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.ui.R
@@ -104,7 +105,7 @@ private fun NoteCard(
         modifier = modifier
             .padding(8.dp)
             .fillMaxWidth()
-            .heightIn(min = 180.dp)
+            .heightIn(min = 190.dp, max = 190.dp)
     ) {
         Column(
             modifier = modifier.padding(8.dp)
@@ -116,7 +117,9 @@ private fun NoteCard(
             Spacer(modifier = modifier.height(8.dp))
             Text(
                 text = note.truncatedContent,
-                style = MaterialTheme.typography.body1
+                style = MaterialTheme.typography.body1,
+                maxLines = if (note.title.length > 14) 6 else 7,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
