@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.lifecycle.viewModelScope
 import com.example.ui.R
 import com.example.ui.ui.model.NoteUiState
@@ -96,7 +97,10 @@ fun NoteInputForm(
             keyboardActions = KeyboardActions(onNext = {
                 contentFocusRequester.requestFocus()
             } ),
-            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Sentences,
+                imeAction = ImeAction.Next
+            ),
             singleLine = true
         )
         TextField(
@@ -107,6 +111,9 @@ fun NoteInputForm(
                 .fillMaxWidth()
                 .fillMaxHeight()
                 .focusRequester(contentFocusRequester),
+            keyboardOptions = KeyboardOptions(
+                capitalization = KeyboardCapitalization.Sentences
+            ),
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent
