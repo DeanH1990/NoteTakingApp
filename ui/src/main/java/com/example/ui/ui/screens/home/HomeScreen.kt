@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.notetakingapp.models.Note
 import com.example.ui.R
+import com.example.ui.ui.model.NoteUiState
 import com.example.ui.ui.theme.NoteTakingAppTheme
 import com.example.ui.ui.utils.NoteTopAppBar
 import org.koin.androidx.compose.getViewModel
@@ -54,7 +55,7 @@ fun HomeScreen(
 
 @Composable
 private fun HomeBody(
-    noteList: List<Note>,
+    noteList: List<NoteUiState>,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -69,6 +70,7 @@ private fun HomeBody(
                 style = MaterialTheme.typography.subtitle1
             )
         }
+    /* TODO add composable to show notes if database not empty     */
     }
 }
 
