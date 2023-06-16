@@ -32,7 +32,10 @@ fun NotesNavGraph(
             )
         }
         composable(route = context.getString(NoteEntryDestination.route)) {
-            NoteEntryScreen(navigateBack = { /*TODO*/ }, onNavigateUp = { /*TODO*/ })
+            NoteEntryScreen(
+                navigateBack = { navController.popBackStack() },
+                onNavigateUp = { navController.navigateUp() }
+            )
         }
     }
 }
