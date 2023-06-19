@@ -29,6 +29,15 @@ fun HomeScreen(
 ) {
     val allNotesVm = viewModel.notes.collectAsState().value
 
+    HomeScreenContent(navigateToNoteEntry, modifier, allNotesVm)
+}
+
+@Composable
+private fun HomeScreenContent(
+    navigateToNoteEntry: () -> Unit,
+    modifier: Modifier,
+    allNotesVm: List<NoteUiState>
+) {
     Scaffold(
         topBar = {
             NoteTopAppBar(
@@ -38,7 +47,7 @@ fun HomeScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = navigateToNoteEntry ,
+                onClick = navigateToNoteEntry,
                 modifier = modifier.navigationBarsPadding()
             ) {
                 Icon(
