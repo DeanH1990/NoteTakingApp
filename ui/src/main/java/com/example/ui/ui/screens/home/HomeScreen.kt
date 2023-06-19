@@ -16,9 +16,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.ui.R
 import com.example.ui.ui.model.NoteUiState
-import com.example.ui.ui.theme.NoteTakingAppTheme
+import com.example.ui.ui.theme.*
 import com.example.ui.ui.utils.NoteTopAppBar
 import org.koin.androidx.compose.getViewModel
+
+private const val GRID_CELLS = 2
+private const val MAX_TITLE_LENGTH = 14
+private const val MAX_LINES_LONG_TITLE = 6
+private const val MAX_LINES_SHORT_TITLE = 7
 
 @Composable
 fun HomeScreen(

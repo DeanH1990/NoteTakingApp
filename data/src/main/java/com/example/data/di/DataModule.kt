@@ -7,12 +7,14 @@ import com.example.notetakingapp.repositories.NoteRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
+private const val NOTE_DATABASE = "note_database"
+
 val dataModule = module {
     single {
         Room.databaseBuilder(
             androidContext(),
             NoteDatabase::class.java,
-            "note_database"
+            NOTE_DATABASE
         ).build()
     }
 
