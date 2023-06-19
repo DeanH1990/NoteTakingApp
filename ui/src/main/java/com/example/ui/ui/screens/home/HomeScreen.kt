@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.ui.R
 import com.example.ui.ui.model.NoteUiState
 import com.example.ui.ui.theme.NoteTakingAppTheme
@@ -74,8 +73,8 @@ private fun HomeBody(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(8.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+            .padding(BODY_PADDING),
+        verticalArrangement = Arrangement.spacedBy(LIST_SPACING)
     ) {
         if (noteList.isEmpty()) {
             Text(
@@ -93,8 +92,8 @@ private fun NoteList(
     modifier: Modifier = Modifier
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp),
+        columns = GridCells.Fixed(GRID_CELLS),
+        contentPadding = PaddingValues(GRID_PADDING),
         content = {
             items(noteList) { note ->
                 NoteCard(note = note, modifier = modifier)
@@ -109,25 +108,25 @@ private fun NoteCard(
     modifier: Modifier = Modifier
 ) {
     Card(
-        shape = RoundedCornerShape(8.dp),
-        elevation = 4.dp,
+        shape = RoundedCornerShape(CARD_CORNER_RADIUS),
+        elevation = CARD_ELEVATION,
         modifier = modifier
-            .padding(8.dp)
+            .padding(CARD_PADDING)
             .fillMaxWidth()
-            .heightIn(min = 190.dp, max = 190.dp)
+            .heightIn(min = CARD_MIN_HEIGHT, max = CARD_MAX_HEIGHT)
     ) {
         Column(
-            modifier = modifier.padding(8.dp)
+            modifier = modifier.padding(CARD_PADDING)
         ) {
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.h6
             )
-            Spacer(modifier = modifier.height(8.dp))
+            Spacer(modifier = modifier.height(TEXT_SPACING))
             Text(
                 text = note.truncatedContent,
                 style = MaterialTheme.typography.body1,
-                maxLines = if (note.title.length > 14) 6 else 7,
+                maxLines = if (note.title.length > MAX_TITLE_LENGTH) MAX_LINES_LONG_TITLE else MAX_LINES_SHORT_TITLE,
                 overflow = TextOverflow.Ellipsis
             )
         }
