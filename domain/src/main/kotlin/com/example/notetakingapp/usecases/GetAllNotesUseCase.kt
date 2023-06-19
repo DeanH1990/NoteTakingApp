@@ -5,7 +5,7 @@ import com.example.notetakingapp.repositories.NoteRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetAllNotesUseCase(private val noteRepository: NoteRepository) {
-    fun execute(): Flow<List<Note>> {
+    operator fun invoke(): Flow<List<Note>> {
         return noteRepository.getAllNotes()
     }
 }

@@ -20,7 +20,7 @@ class NoteEntryViewModel(private val createNoteUseCase: CreateNoteUseCase): View
 
     suspend fun saveNote() {
         if (noteUiState.isValid()) {
-            createNoteUseCase.execute(noteUiState.toNote())
+            createNoteUseCase(noteUiState.toNote())
         }
     }
     fun isNoteEmpty(): Boolean {
