@@ -2,21 +2,23 @@ package com.example.data.di
 
 import androidx.room.Room
 import com.example.data.database.NoteDatabase
-import com.example.data.repository.NoteDataRepository
+import com.example.data.repository.NoteRepositoryImpl
 import com.example.notetakingapp.repositories.NoteRepository
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
+
+private const val NOTE_DATABASE = "note_database"
 
 val dataModule = module {
     single {
         Room.databaseBuilder(
             androidContext(),
             NoteDatabase::class.java,
-            "note_database"
+            NOTE_DATABASE
         ).build()
     }
 
     single { get<NoteDatabase>().noteDao() }
 
-    single<NoteRepository> { NoteDataRepository(get()) }
+    single<NoteRepository> { NoteRepositoryImpl(get()) }
 }

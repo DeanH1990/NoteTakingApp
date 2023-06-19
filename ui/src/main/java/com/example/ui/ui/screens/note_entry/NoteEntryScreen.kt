@@ -37,6 +37,18 @@ fun NoteEntryScreen(
 ) {
     val context = LocalContext.current
 
+    NoteEntryContent(context, navigateBack, viewModel, canNavigateBack, onNavigateUp, modifier)
+}
+
+@Composable
+private fun NoteEntryContent(
+    context: Context,
+    navigateBack: () -> Unit,
+    viewModel: NoteEntryViewModel,
+    canNavigateBack: Boolean,
+    onNavigateUp: () -> Unit,
+    modifier: Modifier
+) {
     BackHandler(
         onBack = {
             handleNavigation(
@@ -47,7 +59,7 @@ fun NoteEntryScreen(
             )
         }
     )
-    
+
     Scaffold(
         topBar = {
             NoteTopAppBar(
@@ -67,13 +79,14 @@ fun NoteEntryScreen(
         NoteInputForm(
             noteUiState = viewModel.noteUiState,
             onValueChange = viewModel::updateUiState,
-            modifier = modifier.padding(innerPadding))
+            modifier = modifier.padding(innerPadding)
+        )
 
     }
 }
 
 @Composable
-fun NoteInputForm(
+private fun NoteInputForm(
     noteUiState: NoteUiState,
     modifier: Modifier = Modifier,
     onValueChange: (NoteUiState) -> Unit = {}
@@ -122,7 +135,7 @@ fun NoteInputForm(
     }
 }
 
-fun handleNavigation(
+private fun handleNavigation(
     context: Context,
     messageResId: Int,
     navigate: () -> Unit,

@@ -9,7 +9,7 @@ import com.example.notetakingapp.repositories.NoteRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class NoteDataRepository(private val noteDao: NoteDao): NoteRepository {
+internal class NoteRepositoryImpl(private val noteDao: NoteDao): NoteRepository {
     override fun getAllNotes(): Flow<List<Note>> {
         val allNotes = noteDao.getAllNotes()
 

@@ -17,7 +17,7 @@ class HomeViewModel(private val getAllNotesUseCase: GetAllNotesUseCase): ViewMod
     }
 
     private fun fetchNotes() {
-            getAllNotesUseCase.execute().map { notes ->
+            getAllNotesUseCase().map { notes ->
                 notes.map { it.toNoteUiState() }
             }.onEach { noteUiStates ->
                 _notes.value = noteUiStates
