@@ -5,8 +5,14 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+enableFeaturePreview("VERSION_CATALOGS")
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+            versionCatalogs{
+                libs {
+                    from(files("libs.versions.toml"))
+                }
+            }
     repositories {
         google()
         mavenCentral()
