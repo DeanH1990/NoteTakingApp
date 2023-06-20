@@ -1,0 +1,56 @@
+[versions]
+kotlin = "1.8.21"
+room = "2.5.1"
+koin = "3.4.1"
+coroutines = "1.7.1"
+composeUi = "1.4.3"
+androidxCore = "1.10.1"
+lifecycleRuntime = "2.6.1"
+activityCompose = "1.7.2"
+lifecycleViewModelCompose = "2.6.1"
+junit = "4.13.2"
+androidxTestExt = "1.1.5"
+espressoCore = "3.5.1"
+androidGradlePlugin = "7.3.1"
+kotlinGradlePlugin = "1.8.10"
+
+[libraries]
+# org.jetbrains.kotlin
+kotlinStdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+
+# kotlinx.coroutines
+coroutinesCore = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
+
+# androidx
+androidxCoreKtx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
+activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+lifecycleRuntimeKtx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntime" }
+lifecycleViewmodelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewModelCompose" }
+roomRuntime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+roomKtx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+roomCompiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+# androidx.compose
+composeUi = { group = "androidx.compose.ui", name = "ui", version.ref = "composeUi" }
+composeMaterial = { group = "androidx.compose.material", name = "material", version.ref = "composeUi" }
+composeUiPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "composeUi" }
+composeUiTestUnit4 = { group = "androidx.compose.ui", name = "ui-test-junit4", version.ref = "composeUi" }
+composeUiTooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "composeUi" }
+composeUiTestManifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "composeUi" }
+
+# io.insert-koin
+koinCore = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koinAndroid = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
+koinAndroidxCompose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+
+# junit
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+
+# androidx.test
+androidxTestExtJunit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxTestExt" }
+espressoCore = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
+
+[plugins]
+android = { id = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
+kotlin = { id = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinGradlePlugin" }
