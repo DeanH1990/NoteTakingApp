@@ -3,10 +3,12 @@ plugins {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    // Kotlin dependencies
+    implementation libs.kotlinStdlib
+    implementation libs.coroutinesCore
 
-    implementation "io.insert-koin:koin-core:$koin_version"
+    // Koin dependencies
+    implementation libs.koinCore
 }
 
 java {

@@ -19,14 +19,14 @@ dependencies {
     implementation project(':data')
     implementation project(':ui')
 
-    //Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // Kotlin dependencies
+    implementation libs.kotlinStdlib
 
-    //Room
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    // Room dependencies
+    implementation libs.roomRuntime
+    kapt libs.roomCompiler
 
-    //Dependency injection
-    implementation "io.insert-koin:koin-core:$koin_version"
-    implementation "io.insert-koin:koin-android:$koin_version"
+    // Koin dependencies
+    implementation libs.koinCore
+    implementation libs.koinAndroid
 }
