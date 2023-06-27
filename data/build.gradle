@@ -10,17 +10,33 @@ android {
         minSdkVersion 24
         targetSdkVersion 33
     }
+    namespace 'com.example.data'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
 }
 
 dependencies {
+    // Project dependencies
     implementation project(':domain')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
-    implementation "androidx.room:room-runtime:$room_version"
-    implementation "androidx.room:room-ktx:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    // Kotlin dependencies
+    implementation libs.kotlinStdlib
+    implementation libs.coroutinesCore
 
-    implementation "io.insert-koin:koin-core:$koin_version"
-    implementation "io.insert-koin:koin-android:$koin_version"
+    // Room dependencies
+    implementation libs.roomRuntime
+    implementation libs.roomKtx
+    kapt libs.roomCompiler
+
+    // Koin dependencies
+    implementation libs.koinCore
+    implementation libs.koinAndroid
 }
