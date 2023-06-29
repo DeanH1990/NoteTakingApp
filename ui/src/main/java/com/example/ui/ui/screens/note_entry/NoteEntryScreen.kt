@@ -1,7 +1,6 @@
 package com.example.ui.ui.screens.note_entry
 
 import android.content.Context
-import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -20,11 +19,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
-import androidx.lifecycle.viewModelScope
 import com.example.ui.R
 import com.example.ui.ui.model.NoteUiState
+import com.example.ui.ui.navigation.handleNavigation
 import com.example.ui.ui.utils.NoteTopAppBar
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -55,7 +53,9 @@ private fun NoteEntryContent(
                 context,
                 R.string.empty_note_discarded,
                 navigateBack,
-                viewModel
+                viewModel,
+                viewModel::isNoteEmpty,
+                viewModel::saveNote
             )
         }
     )
@@ -70,7 +70,9 @@ private fun NoteEntryContent(
                         context,
                         R.string.empty_note_discarded,
                         onNavigateUp,
-                        viewModel
+                        viewModel,
+                        viewModel::isNoteEmpty,
+                        viewModel::saveNote
                     )
                 }
             )
@@ -86,7 +88,7 @@ private fun NoteEntryContent(
 }
 
 @Composable
-private fun NoteInputForm(
+fun NoteInputForm(
     noteUiState: NoteUiState,
     modifier: Modifier = Modifier,
     onValueChange: (NoteUiState) -> Unit = {}
