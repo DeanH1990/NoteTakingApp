@@ -14,7 +14,8 @@ internal class NoteRepositoryImpl(private val noteDao: NoteDao): NoteRepository 
         val allNotes = noteDao.getAllNotes()
 
         return allNotes.map { entityList ->
-            entityList.map { EntityMapper.mapEntityNoteToDomain(it) } }
+            entityList.map { EntityMapper.mapEntityNoteToDomain(it) }
+        }.map { it.filterNotNull() }
     }
 
     override fun getNoteById(id: Int): Flow<Note?> {
