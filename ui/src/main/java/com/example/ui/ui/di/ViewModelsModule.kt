@@ -11,6 +11,6 @@ val viewModelsModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { NoteEntryViewModel(get()) }
     viewModel { (savedStateHandle: SavedStateHandle) ->
-        NoteEditViewModel(savedStateHandle, get(), get())
+        NoteEditViewModel(savedStateHandle, get(), get(), get())
     }
 }
