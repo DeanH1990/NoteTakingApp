@@ -135,20 +135,3 @@ private fun NoteInputForm(
     }
 }
 
-private fun handleNavigation(
-    context: Context,
-    messageResId: Int,
-    navigate: () -> Unit,
-    viewModel: NoteEntryViewModel
-) {
-    viewModel.viewModelScope.launch {
-        if (viewModel.isNoteEmpty()) {
-            Toast.makeText(
-                context, context.getString(messageResId), Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            viewModel.saveNote()
-        }
-        navigate()
-    }
-}
