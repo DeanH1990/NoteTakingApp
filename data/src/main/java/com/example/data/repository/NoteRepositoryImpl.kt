@@ -14,11 +14,12 @@ internal class NoteRepositoryImpl(private val noteDao: NoteDao): NoteRepository 
         val allNotes = noteDao.getAllNotes()
 
         return allNotes.map { entityList ->
-            entityList.map { EntityMapper.mapEntityNoteToDomain(it) } }
+            entityList.map { EntityMapper.mapEntityNoteToDomain(it) }
+        }.map { it.filterNotNull() }
     }
 
-    override suspend fun getNoteById(id: Int): Note? {
-        return noteDao.getNoteById(id)?.let { EntityMapper.mapEntityNoteToDomain(it) }
+    override fun getNoteById(id: Int): Flow<Note?> {
+        return noteDao.getNoteById(id).map { EntityMapper.mapEntityNoteToDomain(it) }
     }
 
     override suspend fun createNote(note: Note) {

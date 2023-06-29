@@ -2,14 +2,17 @@
     <!--Screen titles -->
     <string name="app_name">Notes</string>
     <string name="note_entry_title">Add Note</string>
+    <string name="note_edit_title">Edit Note</string>
 
     <!--Inform user -->
     <string name="empty_list">You have no saved notes!</string>
     <string name="empty_note_discarded">Empty note discarded</string>
+    <string name="erroneous_changes">Changes discarded</string>
 
     <!--Routes -->
     <string name="home_route">home</string>
     <string name="note_entry_route">note_entry</string>
+    <string name="note_edit_route">note_edit</string>
 
     <!--Buttons -->
     <string name="back_button">back</string>
