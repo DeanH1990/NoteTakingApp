@@ -1,5 +1,6 @@
 package com.example.ui.ui.screens.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -28,17 +29,19 @@ private const val MAX_LINES_SHORT_TITLE = 7
 @Composable
 fun HomeScreen(
     navigateToNoteEntry: () -> Unit,
+    navigateToNoteEdit: (Int) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = getViewModel()
 ) {
     val allNotesVm = viewModel.notes.collectAsState().value
 
-    HomeScreenContent(navigateToNoteEntry, modifier, allNotesVm)
+    HomeScreenContent(navigateToNoteEntry, navigateToNoteEdit, modifier, allNotesVm)
 }
 
 @Composable
 private fun HomeScreenContent(
     navigateToNoteEntry: () -> Unit,
+    navigateToNoteEdit: (Int) -> Unit,
     modifier: Modifier,
     allNotesVm: List<NoteUiState>
 ) {
@@ -65,6 +68,7 @@ private fun HomeScreenContent(
 
         HomeBody(
             noteList = allNotesVm,
+            navigateToNoteEdit = navigateToNoteEdit,
             modifier = modifier.padding(innerPadding)
         )
     }
@@ -73,6 +77,7 @@ private fun HomeScreenContent(
 @Composable
 private fun HomeBody(
     noteList: List<NoteUiState>,
+    navigateToNoteEdit: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -87,13 +92,14 @@ private fun HomeBody(
                 style = MaterialTheme.typography.subtitle1
             )
         } else {
-            NoteList(noteList = noteList)
+            NoteList(noteList = noteList, navigateToNoteEdit = navigateToNoteEdit)
         }
     }
 }
 @Composable
 private fun NoteList(
     noteList: List<NoteUiState>,
+    navigateToNoteEdit: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyVerticalGrid(
@@ -101,7 +107,7 @@ private fun NoteList(
         contentPadding = PaddingValues(GRID_PADDING),
         content = {
             items(noteList) { note ->
-                NoteCard(note = note, modifier = modifier)
+                NoteCard(note = note, navigateToNoteEdit = navigateToNoteEdit, modifier = modifier)
             }
         }
     )
@@ -110,12 +116,14 @@ private fun NoteList(
 @Composable
 private fun NoteCard(
     note: NoteUiState,
+    navigateToNoteEdit: (Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         shape = RoundedCornerShape(CARD_CORNER_RADIUS),
         elevation = CARD_ELEVATION,
         modifier = modifier
+            .clickable { navigateToNoteEdit(note.id) }
             .padding(CARD_PADDING)
             .fillMaxWidth()
             .heightIn(min = CARD_MIN_HEIGHT, max = CARD_MAX_HEIGHT)
@@ -142,6 +150,6 @@ private fun NoteCard(
 @Composable
 private fun PreviewHomeScreen() {
     NoteTakingAppTheme {
-        HomeScreen(navigateToNoteEntry = {})
+        HomeScreen(navigateToNoteEntry = {}, navigateToNoteEdit = {})
     }
 }
