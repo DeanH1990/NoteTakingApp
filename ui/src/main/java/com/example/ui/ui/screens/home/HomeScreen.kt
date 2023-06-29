@@ -30,18 +30,29 @@ private const val MAX_LINES_SHORT_TITLE = 7
 fun HomeScreen(
     navigateToNoteEntry: () -> Unit,
     navigateToNoteEdit: (Int) -> Unit,
+    canNavigateBack: Boolean = false,
+    canDelete: Boolean = false,
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = getViewModel()
 ) {
     val allNotesVm = viewModel.notes.collectAsState().value
 
-    HomeScreenContent(navigateToNoteEntry, navigateToNoteEdit, modifier, allNotesVm)
+    HomeScreenContent(
+        navigateToNoteEntry,
+        navigateToNoteEdit,
+        canNavigateBack,
+        canDelete,
+        modifier,
+        allNotesVm
+    )
 }
 
 @Composable
 private fun HomeScreenContent(
     navigateToNoteEntry: () -> Unit,
     navigateToNoteEdit: (Int) -> Unit,
+    canNavigateBack: Boolean,
+    canDelete: Boolean,
     modifier: Modifier,
     allNotesVm: List<NoteUiState>
 ) {
@@ -49,7 +60,8 @@ private fun HomeScreenContent(
         topBar = {
             NoteTopAppBar(
                 title = stringResource(HomeDestination.titleRes),
-                canNavigateBack = false
+                canNavigateBack = canNavigateBack,
+                canDelete = canDelete
             )
         },
         floatingActionButton = {

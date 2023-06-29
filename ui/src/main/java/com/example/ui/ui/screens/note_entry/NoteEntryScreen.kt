@@ -31,11 +31,20 @@ fun NoteEntryScreen(
     onNavigateUp: () -> Unit,
     modifier: Modifier = Modifier,
     canNavigateBack: Boolean = true,
+    canDelete: Boolean = false,
     viewModel: NoteEntryViewModel = getViewModel()
 ) {
     val context = LocalContext.current
 
-    NoteEntryContent(context, navigateBack, viewModel, canNavigateBack, onNavigateUp, modifier)
+    NoteEntryContent(
+        context,
+        navigateBack,
+        viewModel,
+        canNavigateBack,
+        canDelete,
+        onNavigateUp,
+        modifier
+    )
 }
 
 @Composable
@@ -44,6 +53,7 @@ private fun NoteEntryContent(
     navigateBack: () -> Unit,
     viewModel: NoteEntryViewModel,
     canNavigateBack: Boolean,
+    canDelete: Boolean,
     onNavigateUp: () -> Unit,
     modifier: Modifier
 ) {
@@ -65,6 +75,7 @@ private fun NoteEntryContent(
             NoteTopAppBar(
                 title = stringResource(NoteEntryDestination.titleRes),
                 canNavigateBack = canNavigateBack,
+                canDelete = canDelete,
                 navigateUp = {
                     handleNavigation(
                         context,
