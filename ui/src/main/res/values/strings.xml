@@ -7,6 +7,7 @@
     <!--Inform user -->
     <string name="empty_list">You have no saved notes!</string>
     <string name="empty_note_discarded">Empty note discarded</string>
+    <string name="erroneous_changes">Changes discarded</string>
 
     <!--Routes -->
     <string name="home_route">home</string>
