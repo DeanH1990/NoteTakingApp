@@ -17,6 +17,7 @@
     <!--Buttons -->
     <string name="back_button">back</string>
     <string name="add_note_button">add note</string>
+    <string name="delete_note_button">delete note</string>
 
     <!--Note input form -->
     <string name="title_input_label">Title</string>

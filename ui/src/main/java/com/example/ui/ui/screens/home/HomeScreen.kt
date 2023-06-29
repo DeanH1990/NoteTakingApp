@@ -30,9 +30,9 @@ private const val MAX_LINES_SHORT_TITLE = 7
 fun HomeScreen(
     navigateToNoteEntry: () -> Unit,
     navigateToNoteEdit: (Int) -> Unit,
+    modifier: Modifier = Modifier,
     canNavigateBack: Boolean = false,
     canDelete: Boolean = false,
-    modifier: Modifier = Modifier,
     viewModel: HomeViewModel = getViewModel()
 ) {
     val allNotesVm = viewModel.notes.collectAsState().value
