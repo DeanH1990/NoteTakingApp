@@ -8,9 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.notetakingapp.usecases.GetNoteByIdUseCase
 import com.example.notetakingapp.usecases.UpdateNoteUseCase
+import com.example.ui.ui.extensions.isValid
+import com.example.ui.ui.extensions.toNote
 import com.example.ui.ui.extensions.toNoteUiState
 import com.example.ui.ui.model.NoteUiState
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class NoteEditViewModel(
@@ -36,5 +37,19 @@ class NoteEditViewModel(
                 }
             }
         }
+    }
+
+    fun updateUiState(newUiState: NoteUiState) {
+        noteUiState = newUiState
+    }
+
+    suspend fun updateNote() {
+        if (noteUiState.isValid()) {
+            updateNoteUseCase(noteUiState.toNote())
+        }
+    }
+
+    fun isNoteEmpty(): Boolean {
+        return noteUiState.title.isEmpty() || noteUiState.content.isEmpty()
     }
 }
