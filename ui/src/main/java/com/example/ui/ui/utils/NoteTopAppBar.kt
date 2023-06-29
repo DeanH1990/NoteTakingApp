@@ -17,8 +17,8 @@ fun NoteTopAppBar(
     title: String,
     canNavigateBack: Boolean,
     canDelete: Boolean,
-    deleteNote: () -> Unit = {},
     modifier: Modifier = Modifier,
+    deleteNote: () -> Unit = {},
     navigateUp: () -> Unit = {}
 ) {
     if (canNavigateBack) {
