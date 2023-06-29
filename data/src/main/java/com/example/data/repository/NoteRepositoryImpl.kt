@@ -17,8 +17,8 @@ internal class NoteRepositoryImpl(private val noteDao: NoteDao): NoteRepository 
             entityList.map { EntityMapper.mapEntityNoteToDomain(it) } }
     }
 
-    override suspend fun getNoteById(id: Int): Note? {
-        return noteDao.getNoteById(id)?.let { EntityMapper.mapEntityNoteToDomain(it) }
+    override fun getNoteById(id: Int): Flow<Note?> {
+        return noteDao.getNoteById(id).map { EntityMapper.mapEntityNoteToDomain(it) }
     }
 
     override suspend fun createNote(note: Note) {
