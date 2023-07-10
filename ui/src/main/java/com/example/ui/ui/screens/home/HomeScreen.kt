@@ -31,17 +31,28 @@ fun HomeScreen(
     navigateToNoteEntry: () -> Unit,
     navigateToNoteEdit: (Int) -> Unit,
     modifier: Modifier = Modifier,
+    canNavigateBack: Boolean = false,
+    canDelete: Boolean = false,
     viewModel: HomeViewModel = getViewModel()
 ) {
     val allNotesVm = viewModel.notes.collectAsState().value
 
-    HomeScreenContent(navigateToNoteEntry, navigateToNoteEdit, modifier, allNotesVm)
+    HomeScreenContent(
+        navigateToNoteEntry,
+        navigateToNoteEdit,
+        canNavigateBack,
+        canDelete,
+        modifier,
+        allNotesVm
+    )
 }
 
 @Composable
 private fun HomeScreenContent(
     navigateToNoteEntry: () -> Unit,
     navigateToNoteEdit: (Int) -> Unit,
+    canNavigateBack: Boolean,
+    canDelete: Boolean,
     modifier: Modifier,
     allNotesVm: List<NoteUiState>
 ) {
@@ -49,7 +60,8 @@ private fun HomeScreenContent(
         topBar = {
             NoteTopAppBar(
                 title = stringResource(HomeDestination.titleRes),
-                canNavigateBack = false
+                canNavigateBack = canNavigateBack,
+                canDelete = canDelete
             )
         },
         floatingActionButton = {
